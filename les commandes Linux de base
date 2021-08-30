@@ -1,0 +1,31 @@
+Vérification de la connectivité :
+
+******** ping <Host> ********
+
+min – indique le délai minimum pour recevoir une réponse
+avg – indique le délai moyen d’obtention des réponses
+max – reflète le délai maximum pour obtenir une réponse
+
+
+
+
+L’option de commande -c est utilisée pour spécifier le nombre de paquets ou de requêtes que l’utilisateur souhaite exécuter.
+
+La syntaxe serait la suivante :
+
+ping –c * domaineexemple.com
+Remplacez * par le nombre de pings que vous souhaitez effectuer.
+
+
+
+
+L’option -a de la commande ping de Linux crée un bip pour vérifier si l’hôte est actif ou non, vous informant ainsi de manière audible.
+
+La commande ressemblerait à ceci :
+
+ping –a domaineexemple.com
+
+
+
+
+pour stop le ping : CTRL + C ou CTRL + I.
