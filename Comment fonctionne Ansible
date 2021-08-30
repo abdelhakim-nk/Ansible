@@ -1,0 +1,10 @@
+Dans Ansible, il existe deux catégories d'ordinateurs: le nœud maître (master) et les nœuds esclaves (slaves). 
+Le nœud maître est une machine sur laquelle est installé l'outil Ansible. Il doit y avoir au moins un nœud maître, bien qu'un nœud maître de sauvegarde puisse également exister.
+
+Ansible fonctionne en se connectant à vos nœuds en SSH et en y poussant de petits programmes, appelés modules. 
+Ces modules sont définis dans un fichier nommé le Playbook. Le nœud maître, se base sur un fichier d'inventaire qui fournit la liste des hôtes sur lesquels les modules Ansible doivent être exécutés.
+
+Ansible exécute ces modules en SSH et les supprime une fois terminé. 
+La seule condition requise pour cette interaction est que votre nœud maître Ansible dispose d'un accès de connexion aux nœuds esclaves.
+Les clés SSH sont le moyen le plus courant de fournir un accès, mais d'autres formes d'authentification sont également prises en charge.
+
