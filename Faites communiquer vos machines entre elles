@@ -1,0 +1,47 @@
+Par défaut, lorsque vous créez une VM, une carte réseau virtuelle lui est affectée, lui permettant d’accéder à Internet dans la plupart des cas.
+Cependant, il se peut que tout cela ne fonctionne pas automatiquement. Vous devrez alors le configurer. 
+
+Il existe plusieurs modes réseaux qui définissent comment votre VM va accéder au réseau ; voici les plus utilisés :
+
+        * NAT (mode par défaut) ;
+
+        * réseau NAT ;
+
+        * accès par pont ;
+
+        * réseau interne ;
+
+        * réseau privé hôte.
+        
+Mode réseau
+
+Exemple d’utilisation
+
+NAT :
+
+Vous souhaitez utiliser une seule VM et télécharger sur cette VM des applications, faire des mises à jour, surfer sur Internet.
+
+Accès par pont :
+
+Vous souhaitez que votre VM devienne un serveur web et donc qu’elle soit vue sur le réseau comme une machine physique avec sa propre adresse IP, accessible depuis l’extérieur.
+
+Réseau interne :
+
+Vous utilisez plusieurs VM pour simuler des réseaux privés qui n’ont pas d’accès vers l’extérieur ni vers la machine hôte.
+
+Réseau NAT :
+
+Même type d’utilisation que pour le NAT, avec plusieurs VM qui souhaitent pouvoir communiquer entre elles (impossible avec le mode NAT classique).
+
+Réseau privé d’hôte :
+
+Similaire au réseau interne, mais permettant aussi une communication avec l’hôte.
+
+
+
+
+Connexion par pont solution car ma VM ne pouvais pas se co : 
+
+Créer un réseau Host-only.
+Depuis Windows, depuis Panneau de configuration > Réseau et Internet > Connexion réseau, sélectionner l'adaptateur virtuel et la carte réseau correspondante. Clique droit > Connexion par pont.
+Configurer la VM.
