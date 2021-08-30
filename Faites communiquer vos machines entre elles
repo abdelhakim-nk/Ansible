@@ -42,6 +42,4 @@ Similaire au réseau interne, mais permettant aussi une communication avec l’h
 
 Connexion par pont solution car ma VM ne pouvais pas se co : 
 
-Créer un réseau Host-only.
-Depuis Windows, depuis Panneau de configuration > Réseau et Internet > Connexion réseau, sélectionner l'adaptateur virtuel et la carte réseau correspondante. Clique droit > Connexion par pont.
-Configurer la VM.
+se mettre sur la carte reseau N°2.
