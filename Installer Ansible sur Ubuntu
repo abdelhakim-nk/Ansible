@@ -1,0 +1,44 @@
+Commencez d'abord par mettre à jour la liste de vos dépôts APT :
+
+******** sudo apt update ********
+
+Installez ensuite le logiciel software-properties-common qui vous permettra de gérer plus facilement les dépôts indépendants (ppa) de votre distribution.
+
+******** sudo apt install software-properties-common ********
+
+Ajoutez le repository ansible en version stable :
+
+******** sudo apt-add-repository --yes --update ppa:ansible/ansible ********
+
+Enfin, installez le moteur ansible :
+
+******** sudo apt install ansible ********
+
+
+
+
+Les nœuds esclaves
+
+Sur les nœuds esclaves, vous avez besoin d'un moyen de communication SSH, le port SSH doit donc être ouvert.
+Vous avez également besoin de Python 2 (version 2.6 ou ultérieure) ou Python 3 (version 3.5 ou ultérieure).
+
+Je ne cesserai de vous le dire chaque jour : "Un bon devopsien, est un informaticien qui automatise ses tâches !". Et comme nous sommes malins 😎,
+nous allons automatiser le provisionnement de nos nœuds esclaves depuis l'outil Vagrant dans l'hyperviseur Virtualbox.
+
+Rendez-vous sur la page d'installation officielle de vagrant et téléchargez le package correspondant à votre système d'exploitation et à votre architecture.
+
+Pour ubuntu, il faut choisir le package 64 bits sous Debian, soit :
+curl -O https://releases.hashicorp.com/vagrant/2.2.6/vagrant_2.2.6_x86_64.deb
+
+******** sudo apt install ./vagrant_2.2.6_x86_64.deb ******** 
+
+Testez ensuite le bon déroulement de votre installation, en vérifiant la version de vagrant :
+
+******** vagrant --version ******** 
+
+Résultat :
+Vagrant 2.2.6
+
+Vagrantfile
+
+C'est à partir du fichier Vagrantfile que toute la procédure débute. Ce fichier décrit comment nos nouvelles machines esclaves seront provisionnées. 
