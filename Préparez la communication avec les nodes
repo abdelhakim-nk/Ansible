@@ -1,0 +1,96 @@
+Par défaut, lorsque vous créez une VM, une carte réseau virtuelle lui est affectée, lui permettant d’accéder à Internet dans la plupart des cas.
+Cependant, il se peut que tout cela ne fonctionne pas automatiquement. Vous devrez alors le configurer. 
+
+Il existe plusieurs modes réseaux qui définissent comment votre VM va accéder au réseau ; voici les plus utilisés :
+
+        * NAT (mode par défaut) ;
+
+        * réseau NAT ;
+
+        * accès par pont ;
+
+        * réseau interne ;
+
+        * réseau privé hôte.
+        
+Mode réseau
+
+Exemple d’utilisation
+
+NAT :
+
+Vous souhaitez utiliser une seule VM et télécharger sur cette VM des applications, faire des mises à jour, surfer sur Internet.
+
+Accès par pont :
+
+Vous souhaitez que votre VM devienne un serveur web et donc qu’elle soit vue sur le réseau comme une machine physique avec sa propre adresse IP, accessible depuis l’extérieur.
+
+Réseau interne :
+
+Vous utilisez plusieurs VM pour simuler des réseaux privés qui n’ont pas d’accès vers l’extérieur ni vers la machine hôte.
+
+Réseau NAT :
+
+Même type d’utilisation que pour le NAT, avec plusieurs VM qui souhaitent pouvoir communiquer entre elles (impossible avec le mode NAT classique).
+
+Réseau privé d’hôte :
+
+Similaire au réseau interne, mais permettant aussi une communication avec l’hôte.
+
+
+
+
+Connexion par pont solution car ma VM ne pouvais pas se co : 
+
+se mettre sur la carte reseau N°2.
+
+
+
+
+
+Préparez la communication :
+
+Ansible travaille avec des outils déjà très utilisés sur les systèmes Linux. En effet, Ansible a uniquement besoin de SSH et de Python pour fonctionner. 
+Il faut donc au minimum que ces 2 outils soient installés et fonctionnels sur le node manager et les nodes. 
+
+
+Pour établir la communication et avoir le droit de lancer des commandes à distance, vous avez besoin de :
+
+             - Définir un inventaire des nodes.
+
+             - Vérifier la connexion SSH entre le node manger et les nodes.
+
+             - Lancer un ping avec Ansible sur les nodes.
+
+             - Vérifier que Python est installé sur les nodes.
+
+             - Créer un simple utilisateur sur les nodes.
+
+             - Attribuer les droits sudo à cet utilisateur.
+
+             - Créer une paire de clés SSH pour cet utilisateur.
+
+             - Copier la clé publique SSH sur les nodes. 
+         
+
+
+Définissez un inventaire des nodes :
+
+Il est temps de nommer vos serveurs
+configurer la résolution de nom via le fichier  /etc/hosts sur le node manager.
+
+Connectez-vous sur le node manager en root.
+
+Ajoutez dans le fichier /etc/hosts sur le node manager l’enregistrement des 2 nodes : 
+
+exemple :     127.0.0.1 localhost
+              127.0.1.1 node-manager
+              # le node .......
+              ************* 192.168.122.11 ........ ***********
+              # le node .........
+              **************** 192.168.122.12 ....... ************
+              
+Cette action vous permettra d’utiliser les noms http1 et bdd1 pour communiquer avec les nodes.
+
+
+
