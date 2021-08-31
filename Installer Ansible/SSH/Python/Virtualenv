@@ -96,7 +96,13 @@ Dans le répertoire bin de votre environnement virtuel, vous pouvez constater qu
 
 
 
+Supprimez SSH avec la commande suivante :
 
+********************** sudo apt-get remove openssh-client openssh-server *******************************
+
+Installez à nouveau SSH avec :
+
+*************************** sudo apt-get install openssh-client openssh-server ****************************************
 
 
 
