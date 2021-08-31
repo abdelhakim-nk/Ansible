@@ -11,14 +11,22 @@ L’installation de Ansible sur le node manager (un serveur Debian) se fera avec
 * Virtualenv crée un dossier qui contient les fichiers exécutables Python, et une copie de la bibliothèque pip. *
 *****************************************************************************************************************
 
+Connectez-vous sur le node manager en root : 
+******************* su ***************
+
 Avec cette méthode, vous créez un environnement de travail virtuel cloisonné, 
 dans lequel vous pourrez installer la version Ansible de votre choix (basée sur le release repository de Ansible).
+
+Installez le paquet Installer Pip pour Python 3 sur Debian 11/10/9 :
+
+******************* $ sudo apt install python3-venv python3-pip *****************************
+
 
 Installez le paquet python-virtualenv, ce qui permettra de créer des environnement de travail virtuel : virtualenv.
 
 Vous profiterez d’installer le paquet sshpass qui servira ultérieurement pour se connecter en SSH avec Ansible.
 
-******************* $ apt install python-virtualenv sshpass *****************************
+******************* $ pip install virtualenv *****************************
 
 
 
@@ -30,7 +38,8 @@ Créez un simple utilisateur :
 Pour ne pas travailler en root sur le node manager (ce n’est vraiment pas recommandé, 
 le compte root peut tout faire sans aucune limite, une erreur est vite arrivée !), vous allez donc créer un simple utilisateur user-ansible :
 
-********************  adduser user-ansible ************************
+!!!!!! ne pas oublier le sudo !!!!!!
+******************** sudo adduser user-ansible ************************
 
 Entrez un mot de passe, confirmez-le, complétez les informations demandées, puis validez avec Oui.
 
