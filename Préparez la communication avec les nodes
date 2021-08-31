@@ -144,6 +144,40 @@ Avant d’utiliser Ansible pour commencer à automatiser des tâches, lancez une
 (l'empreinte du serveur qui doit être vérifiée pour être sûr de se connecter au bon node) sur le node manager. 
 Il faut le faire au moins une fois, sinon Ansible râlera à la première connexion, car le paquet sshpass ne sait pas gérer le fingerprint.
 
-*************************** $ ssh root@bdd1 **********************
+*************************** $ ssh root@(nom_du_hostname) **********************
+
+Utilisez la commande ansible en mode ad-hoc pour tester la connexion entre les nodes et le master.
+Lancez maintenant un ping avec Ansible dans votre environnement de travail virtuel :
+
+****************** ansible -i inventaire.ini -m ping + (Ip ou name mis dans le fichier host qui represente l'IP) --user master (hostname comme master ou root) --ask-pass (demander le password)
+
+retour normal :
+
+              http1 | SUCCESS => {
+              "changed": false,
+              "ping": "pong"
+              }
+              
+Vous venez d’utiliser la commande ansible avec plusieurs options : 
+
+             - -i : indique à Ansible l’emplacement du fichier inventaire ;
+
+             - -m : indique à Ansible d’utiliser le module ping ;
+
+             - http1 : indique à Ansible de faire l’action sur le node http1 ;
+
+             - --user : indique à Ansible d’utiliser l’utilisateur root pour se connecter au node (pas le choix pour le moment, car c’est le seul compte dont vous disposez) ;
+
+             - --ask-pass : indique à Ansible de demander le mot de passe SSH ;
+
+             - http1 : indique à Ansible de lancer la commande sur le node http1.
+
+Le retour de la commande vous indique que l’action est un succès et répond pong au ping ! Le node http1 est bien joignable. 
+
+Ansible ne lance pas la commande ping, il lance un module qui fait la même chose que la commande ping.        
+
+
+Un module est un programme utilisé pour exécuter une tâche ou une commande Ansible.
+
 
 
