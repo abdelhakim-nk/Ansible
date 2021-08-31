@@ -1,0 +1,35 @@
+installer le client SSH: 
+
+Pour vérifier si vous avez le client SSH sur votre système, tapez ce qui suit dans la fenêtre du terminal :
+
+******* ssh *******  
+
+Pour les systèmes Ubuntu/Debian :
+
+*************** sudo apt install openssh-client ********************
+
+
+Pour vérifier si SSH est disponible sur le serveur distant, exécutez la commande :
+
+******************* ssh localhost *****************
+
+Si la sortie répond par " Connexion refusée ", passez à l'installation de SSH sur le serveur.
+
+Exécutez la commande suivante pour installer le serveur SSH :
+
+**************** sudo apt-get install openssh-server ii. *****************
+
+Les fichiers de support requis seront installés, puis vous pourrez vérifier si le serveur SSH est en cours d'exécution sur la machine en tapant cette commande :
+
+********************* sudo service ssh status **************************
+
+La réponse dans le terminal devrait ressembler à ceci si le service SSH fonctionne maintenant correctement :
+
+***********************************************************
+username@host:-$ sudo service ssh status
+• ssh.service - OpenBSD Secure Shell server
+Loaded: loaded (/lib/systemd/system/ssh.service; enabled; vendor preset: enab
+Active: active (running) since Fr 2018-03-12 10:53:44 CET; 1min 22s ago Process: 1174 ExecReload=/bin/kill -HUP $MAINPID (code=exited, status=0/SUCCES
+
+Main PID: 3165 (sshd)
+**********************************************************
