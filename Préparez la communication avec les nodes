@@ -81,7 +81,31 @@ configurer la résolution de nom via le fichier  /etc/hosts sur le node manager.
 
 Connectez-vous sur le node manager en root.
 
+installer vim oour modifier les fichier avec des droit root comme le file hosts
+
+**************** apt-get update *********************
+**************** apt-get install vim ****************
+
 Ajoutez dans le fichier /etc/hosts sur le node manager l’enregistrement des 2 nodes : 
+
+Vim a deux modes.
+1. Mode insertion (où vous pouvez simplement taper comme un éditeur de texte normal. Appuyez sur i pour le mode insertion)
+2. Mode de commande (où vous donnez des commandes à l'éditeur pour faire avancer les choses. Appuyez sur ESC pour le mode de commande)
+
+La plupart d'entre eux ci-dessous sont en mode commande :
+
+              x - pour supprimer le caractère indésirable
+              u - pour annuler la dernière commande et U pour annuler toute la ligne
+              CTRL-R pour refaire
+              A - pour ajouter du texte à la fin
+              :wq - pour enregistrer et quitter
+              :q! - supprimer tous les changements
+              dw - déplacez le curseur au début du mot pour supprimer ce mot
+              2w - pour déplacer le curseur de deux mots vers l'avant.
+              3e - pour déplacer le curseur à la fin du troisième mot vers l'avant.
+              0 (zéro) pour passer au début de la ligne.
+              d2w - qui supprime 2 mots .. le nombre peut être modifié pour supprimer le nombre de mots consécutifs comme d3w
+              dd pour supprimer la ligne et 2dd pour supprimer la ligne. le numéro peut être modifié pour supprimer le nombre de mots consécutifs
 
 exemple :     127.0.0.1 localhost
               127.0.1.1 node-manager
@@ -92,5 +116,34 @@ exemple :     127.0.0.1 localhost
               
 Cette action vous permettra d’utiliser les noms http1 et bdd1 pour communiquer avec les nodes.
 
+
+
+
+Créez le fichier inventaire Ansible :
+
+Pour fonctionner, Ansible a besoin d’un fichier inventaire. Ce fichier contient la liste des nodes. Vous allez donc enregistrer le nom des nodes dans ce fichier.
+
+Placez-vous dans votre environnement virtuel :
+
+**************************$ source ansible2.7.10/bin/activate***************************************
+(ansible2.7.10) user-ansible@node-manager:~$
+
+Puis éditez avec la commande vim le fichier inventaire.ini :
+
+********************(ansible2.7.10) user-ansible@node-manager:~$ vim inventaire.ini*******************************
+Mettez dans ce fichier les 2 noms des nodes :
+
+       - http1
+       - bdd1
+       
+       
+       
+Vérifiez que vous communiquez avec les nodes :       
+
+Avant d’utiliser Ansible pour commencer à automatiser des tâches, lancez une connexion SSH sur les nodes pour enregistrer la fingerprint 
+(l'empreinte du serveur qui doit être vérifiée pour être sûr de se connecter au bon node) sur le node manager. 
+Il faut le faire au moins une fois, sinon Ansible râlera à la première connexion, car le paquet sshpass ne sait pas gérer le fingerprint.
+
+*************************** $ ssh root@bdd1 **********************
 
 
