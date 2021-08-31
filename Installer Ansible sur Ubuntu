@@ -2,47 +2,94 @@ Commencez d'abord par mettre à jour la liste de vos dépôts APT :
 
 ******** sudo apt update ********
 
-Installez ensuite le logiciel software-properties-common qui vous permettra de gérer plus facilement les dépôts indépendants (ppa) de votre distribution.
+Installez les prérequis :
 
-******** sudo apt install software-properties-common ********
+L’installation de Ansible sur le node manager (un serveur Debian) se fera avec la méthode pip de Python dans un virtualenv.
 
-Ajoutez le repository ansible en version stable :
+*****************************************************************************************************************
+* Un virtualenv est un outil Python qui permet de créer des environnements de travail virtuels isolés.          *
+* Virtualenv crée un dossier qui contient les fichiers exécutables Python, et une copie de la bibliothèque pip. *
+*****************************************************************************************************************
 
-******** sudo apt-add-repository --yes --update ppa:ansible/ansible ********
+Avec cette méthode, vous créez un environnement de travail virtuel cloisonné, 
+dans lequel vous pourrez installer la version Ansible de votre choix (basée sur le release repository de Ansible).
 
-Enfin, installez le moteur ansible :
+Installez le paquet python-virtualenv, ce qui permettra de créer des environnement de travail virtuel : virtualenv.
 
-******** sudo apt install ansible ********
+Vous profiterez d’installer le paquet sshpass qui servira ultérieurement pour se connecter en SSH avec Ansible.
 
-
-
-
-Les nœuds esclaves
-
-Sur les nœuds esclaves, vous avez besoin d'un moyen de communication SSH, le port SSH doit donc être ouvert.
-Vous avez également besoin de Python 2 (version 2.6 ou ultérieure) ou Python 3 (version 3.5 ou ultérieure).
-
-Je ne cesserai de vous le dire chaque jour : "Un bon devopsien, est un informaticien qui automatise ses tâches !". Et comme nous sommes malins 😎,
-nous allons automatiser le provisionnement de nos nœuds esclaves depuis l'outil Vagrant dans l'hyperviseur Virtualbox.
-
-Rendez-vous sur la page d'installation officielle de vagrant et téléchargez le package correspondant à votre système d'exploitation et à votre architecture.
-
-Pour ubuntu, il faut choisir le package 64 bits sous Debian, soit :
-curl -O https://releases.hashicorp.com/vagrant/2.2.6/vagrant_2.2.6_x86_64.deb
-
-******** sudo apt install ./vagrant_2.2.6_x86_64.deb ******** 
+******************* $ apt install python-virtualenv sshpass *****************************
 
 
 
 
 
-Testez ensuite le bon déroulement de votre installation, en vérifiant la version de vagrant :
 
-******** vagrant --version ******** 
+Créez un simple utilisateur :
 
-Résultat :
-Vagrant 2.2.6
+Pour ne pas travailler en root sur le node manager (ce n’est vraiment pas recommandé, 
+le compte root peut tout faire sans aucune limite, une erreur est vite arrivée !), vous allez donc créer un simple utilisateur user-ansible :
 
-Vagrantfile
+********************  adduser user-ansible ************************
 
-C'est à partir du fichier Vagrantfile que toute la procédure débute. Ce fichier décrit comment nos nouvelles machines esclaves seront provisionnées. 
+Entrez un mot de passe, confirmez-le, complétez les informations demandées, puis validez avec Oui.
+
+Maintenant que l’utilisateur est créé, vous pouvez l’utiliser avec la commande suivante :
+
+****************** su - user-ansible *******************************
+Vous travaillez maintenant avec l’utilisateur user-ansible sur le node-manager.
+
+
+
+
+
+
+Créez votre environnement de travail virtuel :
+
+Vous créez alors un environnement de travail virtuel nommé ansible.....
+(Le nom est arbitraire. Vous pouvez mettre ce que vous voulez, mais donner du sens à ce que vous faites, c’est mieux.)
+
+Sur le node manager, lancez la commande suivante :
+
+********************** user-ansible@node-manager:~$ virtualenv ansible...... ****************
+
+Vous utilisez la commande virtualenv pour créer l’environnement ansible(version choisie), dans lequel les outils, les ressources et le gestionnaire de paquets sont installés.
+
+Pour activer l'environnement virtuel, il faut activer la source :
+
+******************  source ansible(version choisie)/bin/activate ************************
+(ansible(version choisie)) user-ansible@node-manager:~$
+Le prompt a changé au profit de  (ansible(version choisie)) user-ansible@node-manager:~$. Ce qui signifie que vous êtes dans l'environnement de travail virtuel Ansible.......
+
+
+
+
+
+Installez Ansible dans votre environnement virtuel :
+
+Installez maintenant Ansible(version choisie) avec pip avec la commande suivante :
+
+(ansible(version choisie)) user-ansible@node-manager:~$ pip install ansible==(version choisie)
+
+*******************************************************************************************************************************
+*Attention de bien vérifier que le prompt est bien (ansible2.7.10) user-ansible@node-manager:~$ avant de lancer les commandes.*
+*******************************************************************************************************************************
+
+Vérifiez la version de Ansible avec la commande suivante : 
+
+******************* ansible --version ***********************
+
+Vérifiez votre installation :
+
+Dans le répertoire bin de votre environnement virtuel, vous pouvez constater que 10 outils Ansible sont installés :
+
+************************ ls ansible2.7.10/bin/ansible* -l *******************************
+
+
+
+
+
+
+
+
+
