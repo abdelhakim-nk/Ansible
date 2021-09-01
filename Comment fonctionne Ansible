@@ -8,3 +8,37 @@ Ansible exécute ces modules en SSH et les supprime une fois terminé.
 La seule condition requise pour cette interaction est que votre nœud maître Ansible dispose d'un accès de connexion aux nœuds esclaves.
 Les clés SSH sont le moyen le plus courant de fournir un accès, mais d'autres formes d'authentification sont également prises en charge.
 
+
+
+
+
+Utilisez ansible-galaxy pour créer automatiquement un rôle:
+
+
+Allez-y, maintenant ! Créez votre premier rôle pour l’installation d'Apache avec la commande ansible-galaxy et l’option init :
+
+************************* $ ansible-galaxy init apache *********************************
+
+Utilisez la commande tree pour afficher l’arborescence des fichiers :
+
+*********************************** $ tree apache **********************************
+
+
+
+
+
+L'arborescence contient les répertoires suivants :
+
+       - files : tous les fichiers à copier sur le node ;
+
+       - templates : tous les fichiers de template Jinja ;
+
+       - tasks : liste des instructions à exécuter (le fichier main.yml est obligatoire) ;
+
+       - handlers : même chose pour les instructions handlers (le fichier main.yml est obligatoire) ;
+
+       - vars : fichier contenant des déclarations de variables (le fichier main.yml est obligatoire) ; les variables définies ici sont prioritaires par rapport aux variables définies dans l'inventaire ;
+
+       - defaults : valeurs par défaut (le fichier main.yml est obligatoire) avec une priorité moindre ;
+
+       - meta : dépendances du rôle et informations (auteur, licence, plateformes...) sur le rôle (le fichier main.yml est obligatoire).
