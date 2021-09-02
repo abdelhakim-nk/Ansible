@@ -42,3 +42,14 @@ L'arborescence contient les répertoires suivants :
        - defaults : valeurs par défaut (le fichier main.yml est obligatoire) avec une priorité moindre ;
 
        - meta : dépendances du rôle et informations (auteur, licence, plateformes...) sur le rôle (le fichier main.yml est obligatoire).
+ 
+ 
+ 
+
+
+
+Les rôles:
+********************************************************************************
+* https://docs.ansible.com/ansible/latest/user_guide/playbooks_reuse_roles.html*
+********************************************************************************
+
